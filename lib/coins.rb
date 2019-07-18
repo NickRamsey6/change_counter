@@ -1,39 +1,40 @@
 require 'pry'
 
 class Change
-  def initialize
+  def initialize(total)
     @quarters = 0
     @dimes = 0
     @nickels = 0
     @pennies = 0
+    @total = total
   end
 
-  def count_change(total)
+  def count_change
     coins_str = ''
-    until (total < 25)
-      p total
-      total = total - 25
+    until (@total < 25)
+      p @total
+      @total = @total - 25
       @quarters += 1
     end
     coins_str += "#{@quarters} quarters, "
 
-    until (total <10)
-      total = total - 10
+    until (@total <10)
+      @total = @total - 10
       @dimes += 1
     end
     coins_str += "#{@dimes} dimes, "
 
-    until (total < 5)
-      total = total - 5
+    until (@total < 5)
+      @total = @total - 5
       @nickels += 1
     end
     coins_str += "#{@nickels} nickels, "
 
-    until (total < 1)
-      total = total -1
+    until (@total < 1)
+      @total = @total -1
       @pennies += 1
     end
-    coins_str += "and #{@pennies} pennies, "
+    coins_str += "and #{@pennies} pennies"
     coins_str
   end
 end
@@ -76,5 +77,5 @@ end
 # end
 
 # p 74.count_change()
-change = Change.new()
-p change.count_change(20)
+change = Change.new(20)
+p change.count_change
